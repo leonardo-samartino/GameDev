@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://drmoukogyktm3"]
+
+[ext_resource type="Texture2D" uid="uid://c6op4kf4b4us7" path="res://Sprites/Items/Boxes/Box1/Hit (28x24).png" id="1_jmqwt"]
+[ext_resource type="Script" path="res://Scripts/box.gd" id="1_rvmoo"]
+[ext_resource type="Texture2D" uid="uid://c5g7s56ork4ta" path="res://Sprites/Items/Boxes/Box1/Idle.png" id="2_ggibj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cls5"]
+atlas = ExtResource("1_jmqwt")
+region = Rect2(0, 0, 28, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4fjq"]
+atlas = ExtResource("1_jmqwt")
+region = Rect2(28, 0, 28, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5krym"]
+atlas = ExtResource("1_jmqwt")
+region = Rect2(56, 0, 28, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r3toc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cls5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x4fjq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5krym")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ggibj")
+}],
+"loop": false,
+"name": &"Hit",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ggibj")
+}],
+"loop": false,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jhkjn"]
+
+[sub_resource type="Gradient" id="Gradient_7utxm"]
+offsets = PackedFloat32Array(0, 0.666667, 1)
+colors = PackedColorArray(0.72549, 0.431373, 0.329412, 1, 0.72549, 0.431373, 0.329412, 1, 0.517647, 0.2, 0.27451, 1)
+
+[node name="Box" type="StaticBody2D" groups=["Box"]]
+script = ExtResource("1_rvmoo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_r3toc")
+animation = &"Hit"
+autoplay = "Idle"
+frame = 3
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jhkjn")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 30
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+direction = Vector2(0, -1)
+spread = 80.0
+gravity = Vector2(0, 80)
+initial_velocity_min = 50.0
+initial_velocity_max = 70.0
+scale_amount_min = 4.0
+scale_amount_max = 6.0
+color_ramp = SubResource("Gradient_7utxm")

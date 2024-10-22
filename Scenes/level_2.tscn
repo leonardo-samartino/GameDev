@@ -1,0 +1,106 @@
+[gd_scene load_steps=10 format=3 uid="uid://n63qtoqmew6b"]
+
+[ext_resource type="PackedScene" uid="uid://ijyns5c618ip" path="res://Prefabs/player.tscn" id="2_48ru3"]
+[ext_resource type="PackedScene" uid="uid://faa8rv8f5kcs" path="res://Prefabs/tile_map.tscn" id="3_5ilm4"]
+[ext_resource type="Texture2D" uid="uid://bsgj6dtchieu4" path="res://Sprites/Background/Yellow.png" id="4_amtxw"]
+[ext_resource type="Script" path="res://Scripts/DeathArea.gd" id="5_hkdsk"]
+[ext_resource type="PackedScene" uid="uid://dkiuemf5isyg5" path="res://Prefabs/hud.tscn" id="6_416ap"]
+[ext_resource type="PackedScene" uid="uid://chs61k6tbq20c" path="res://Prefabs/slime.tscn" id="7_alo6q"]
+[ext_resource type="PackedScene" uid="uid://rwnw03gsqk0h" path="res://Prefabs/flag.tscn" id="7_wcesa"]
+[ext_resource type="PackedScene" uid="uid://dmyw15s7nm46b" path="res://Prefabs/fruit.tscn" id="8_agclj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xoiqp"]
+size = Vector2(2796, 49)
+
+[node name="level_2" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("2_48ru3")]
+position = Vector2(27, 233)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(-2, 5)
+limit_left = 0
+limit_bottom = 270
+
+[node name="TileMap" parent="." instance=ExtResource("3_5ilm4")]
+layer_0/tile_data = PackedInt32Array(1048576, 1114112, 2, 1048577, 1114112, 2, 1048578, 1179648, 2, 1048589, 1114112, 2, 1048590, 1179648, 2, 1048591, 1245184, 2, 720917, 1114112, 2, 720918, 1179648, 2, 720919, 1245184, 2, 852002, 1114112, 2, 852003, 1179648, 2, 852004, 1245184, 2, 983088, 1114112, 2, 983089, 1179648, 2, 983090, 1245184, 2, 983108, 1114112, 2, 983109, 1179648, 2, 983110, 1245184, 2, 655434, 1114112, 2, 655435, 1179648, 2, 655436, 1245184, 2, 1048660, 1114112, 2, 1048661, 1179648, 2, 1048662, 1245184, 2, 1048663, 1114112, 2, 1048664, 1179648, 2, 1048665, 1245184, 2, 1048666, 1114112, 2, 1048667, 1179648, 2, 1048668, 1245184, 2, 1048669, 1114112, 2, 1048670, 1179648, 2, 1048671, 1245184, 2, 1048672, 1114112, 2, 1048673, 1179648, 2, 1048674, 1245184, 2, 1048675, 1114112, 2, 1048676, 1179648, 2, 1048677, 1245184, 2, 1048678, 1114112, 2, 1048679, 1179648, 2, 1048680, 1245184, 2, 1048681, 1114112, 2, 1048682, 1179648, 2, 1048683, 1245184, 2, 1048684, 1114112, 2, 1048685, 1179648, 2, 1048686, 1245184, 2, 1048687, 1114112, 2, 1048688, 1179648, 2, 1048689, 1245184, 2, 1048690, 1114112, 2, 1048691, 1179648, 2, 1048692, 1245184, 2, 1048693, 1114112, 2, 1048694, 1179648, 2, 1048695, 1245184, 2, 1048696, 1114112, 2, 1048697, 1179648, 2, 1048698, 1245184, 2, 721022, 1114112, 2, 721023, 1179648, 2, 721024, 1245184, 2, 524406, 1114112, 2, 524407, 1179648, 2, 524408, 1245184, 2, 262256, 1114112, 2, 262257, 1179648, 2, 262258, 1245184, 2, 131196, 1114112, 2, 131197, 1179648, 2, 131198, 1245184, 2, 524431, 1114112, 2, 524432, 1179648, 2, 524433, 1245184, 2, 786490, 1114112, 2, 786491, 1179648, 2, 786492, 1245184, 2, 131207, 1114112, 2, 131208, 1179648, 2, 131209, 1245184, 2, 852052, 983040, 4, 917588, 983040, 5, 983124, 983040, 6, 852090, 983040, 4, 917626, 983040, 5, 983162, 983040, 6, 1048579, 1245184, 2)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.3, 0.3)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+offset_left = -272.0
+offset_top = -159.0
+offset_right = 2766.0
+offset_bottom = 614.0
+texture = ExtResource("4_amtxw")
+stretch_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="DeathArea" type="Area2D" parent="."]
+script = ExtResource("5_hkdsk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea"]
+position = Vector2(1382, 298)
+shape = SubResource("RectangleShape2D_xoiqp")
+
+[node name="HUD" parent="." instance=ExtResource("6_416ap")]
+
+[node name="Flag" parent="." instance=ExtResource("7_wcesa")]
+position = Vector2(2316, 98)
+level = "res://Scenes/level_1.tscn"
+
+[node name="Slime" parent="." instance=ExtResource("7_alo6q")]
+position = Vector2(1611, 239)
+
+[node name="Slime2" parent="." instance=ExtResource("7_alo6q")]
+position = Vector2(1499, 237)
+
+[node name="Fruit" parent="." instance=ExtResource("8_agclj")]
+position = Vector2(1814, 47)
+
+[node name="Slime3" parent="." instance=ExtResource("7_alo6q")]
+position = Vector2(1834, 240)
+
+[node name="Slime4" parent="." instance=ExtResource("7_alo6q")]
+position = Vector2(1713, 239)
+
+[node name="Fruit2" parent="." instance=ExtResource("8_agclj")]
+position = Vector2(1658, 246)
+
+[node name="Fruit3" parent="." instance=ExtResource("8_agclj")]
+position = Vector2(1415, 240)
+
+[node name="Fruit4" parent="." instance=ExtResource("8_agclj")]
+position = Vector2(1904, 239)
+
+[node name="Fruit5" parent="." instance=ExtResource("8_agclj")]
+position = Vector2(1769, 233)
+
+[node name="Fruit6" parent="." instance=ExtResource("8_agclj")]
+position = Vector2(481, 132)
+
+[node name="Fruit7" parent="." instance=ExtResource("8_agclj")]
+position = Vector2(128, 185)
+
+[node name="Fruit8" parent="." instance=ExtResource("8_agclj")]
+position = Vector2(301, 75)
+
+[node name="Fruit9" parent="." instance=ExtResource("8_agclj")]
+position = Vector2(696, 162)
+
+[node name="Fruit10" parent="." instance=ExtResource("8_agclj")]
+position = Vector2(867, 162)
+
+[node name="Fruit11" parent="." instance=ExtResource("8_agclj")]
+position = Vector2(1051, 152)
+
+[node name="Fruit12" parent="." instance=ExtResource("8_agclj")]
+position = Vector2(1108, 225)
+
+[node name="Fruit13" parent="." instance=ExtResource("8_agclj")]
+position = Vector2(2041, 164)
+
+[connection signal="body_entered" from="DeathArea" to="DeathArea" method="_on_body_entered"]

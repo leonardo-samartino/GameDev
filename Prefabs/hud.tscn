@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkiuemf5isyg5"]
+
+[ext_resource type="Script" path="res://Scripts/hud.gd" id="1_5c4v5"]
+[ext_resource type="Texture2D" uid="uid://b1v8byuolf2yf" path="res://Sprites/Main Characters/Pink Man/Jump (32x32).png" id="1_u12e0"]
+[ext_resource type="Texture2D" uid="uid://beio8vwedyh35" path="res://Sprites/Items/Fruits/Orange.png" id="2_u3vfv"]
+[ext_resource type="FontFile" uid="uid://c81k3lb61nqee" path="res://Fonts/DePixelBreitFett.otf" id="3_nltn2"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_5c4v5")
+
+[node name="Life" type="Node2D" parent="."]
+position = Vector2(13, 21)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Life"]
+position = Vector2(13, 0)
+texture = ExtResource("1_u12e0")
+region_enabled = true
+region_rect = Rect2(6, 3, 21, 16.8911)
+
+[node name="LifeText" type="Label" parent="Life"]
+texture_filter = 1
+offset_left = 31.0
+offset_top = -4.0
+offset_right = 71.0
+offset_bottom = 10.0
+theme_override_colors/font_outline_color = Color(0.129412, 0.121569, 0.188235, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_nltn2")
+theme_override_font_sizes/font_size = 10
+text = "3"
+
+[node name="Score" type="Node2D" parent="."]
+position = Vector2(445, 21)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Score"]
+position = Vector2(13, 0)
+texture = ExtResource("2_u3vfv")
+region_enabled = true
+region_rect = Rect2(40, 8, 18, 15)
+
+[node name="ScoreText" type="Label" parent="Score"]
+offset_left = -16.0
+offset_top = -6.0
+offset_right = 24.0
+offset_bottom = 17.0
+theme_override_colors/font_outline_color = Color(0.129412, 0.121569, 0.188235, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_nltn2")
+theme_override_font_sizes/font_size = 10
+text = "3"
+metadata/_edit_use_anchors_ = true
